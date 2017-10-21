@@ -18,6 +18,11 @@ public class EventListener implements Listener {
         if(event.isCancelled()) return;
         event.setCancelled(true);
 
+        if(aceChat.chatMuted && !Permissions.has(event.getPlayer(), "acechat.admin.mutechat.bypass")) {
+            event.getPlayer().sendMessage(Lang.format("error.chatmuted"));
+            return;
+        }
+
         if(Permissions.has(event.getPlayer(), "acechat.user.chat")) {
             ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.chat", "chat"));
             Bukkit.spigot().broadcast(chatFormat.getJSONMessage(event.getPlayer(), null, event.getMessage()));

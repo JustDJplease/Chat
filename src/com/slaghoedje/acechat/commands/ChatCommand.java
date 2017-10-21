@@ -23,6 +23,7 @@ public class ChatCommand implements CommandExecutor {
         subCommands.add(new ChatVersionCommand(aceChat));
         subCommands.add(new ChatReloadCommand(aceChat));
         subCommands.add(new ChatClearCommand(aceChat));
+        subCommands.add(new ChatMuteCommand(aceChat));
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -34,7 +35,7 @@ public class ChatCommand implements CommandExecutor {
         for(SubCommand subCommand : subCommands) {
             for(String command : subCommand.getCommands()) {
                 if(args[0].equalsIgnoreCase(command)) {
-                    if(!(!(sender instanceof Player) || Permissions.has((Player) sender, subCommand.getPermission()))) {
+                    if(!(!(sender instanceof Player) || Permissions.has(sender, subCommand.getPermission()))) {
                         sender.sendMessage(Lang.format("error.nopermission").replaceAll("%permission%", subCommand.getPermission()));
                         return true;
                     }

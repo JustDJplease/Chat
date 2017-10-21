@@ -24,6 +24,8 @@ permissions:
       acechat.admin.help: true
       acechat.admin.reload: true
       acechat.admin.clearchat.bypass: true
+      acechat.admin.mutechat: true
+      acechat.admin.mutechat.bypass: true
   acechat.admin.clearchat:
     description: Allows the user to clear the chat
     default: op
@@ -38,6 +40,12 @@ permissions:
     default: op
   acechat.admin.clearchat.bypass:
     description: Let's the user not see the chat clear
+    default: op
+  acechat.admin.mutechat:
+    description: Allows the user to mute the global chat
+    default: op
+  acechat.admin.mutechat.bypass:
+    description: Allows the user to chat while the global chat is muted
     default: op
 
   acechat.user.*:

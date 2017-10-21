@@ -30,6 +30,7 @@ public class AceChat extends JavaPlugin {
     public FileConfiguration messages;
 
     public boolean papiPresent = false;
+    public boolean chatMuted = false;
 
     public void onEnable() {
         loadConfig();
@@ -105,7 +106,10 @@ public class AceChat extends JavaPlugin {
         if(!formatsDirectory.isDirectory()) throw new RuntimeException("\\formats is not a directory!");
 
         List<String> formats = new ArrayList<>();
-        formats.addAll(Arrays.asList(formatsDirectory.list()));
+        String[] files = formatsDirectory.list();
+
+        assert files != null;
+        formats.addAll(Arrays.asList(files));
 
         if(formats.isEmpty()) {
             formats.add("chat.yml");
