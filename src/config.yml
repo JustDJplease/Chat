@@ -1,0 +1,27 @@
+# Formats are created in the /formats folder
+# The name doesn't matter, as long as it matches the name you specified
+# The extension (.yml) is not needed
+# For an example, see the default chat.yml
+formats:
+
+  # The format for the global chat
+  chat: 'chat'
+
+  # The format for private messages
+  private: 'private'
+
+# The event priority for all the events in this plugin,
+# starting with LOWEST, and ending with HIGHEST
+# Better to leave these as-is, but you can change them when you are
+# experiencing any problems
+event-priority:
+
+  # Chat event is used to format the chat.
+  # HIGHEST is so other plugins can for example mute the chat without
+  # any problems
+  chat: 'HIGHEST'
+
+# The amount of lines to be cleared when clearing chat
+# This does not include the custom message in messages.yml
+# Set default to 102, while the chat length is 100, just to be safe
+clear-length: 102

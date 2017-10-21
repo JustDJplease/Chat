@@ -1,0 +1,58 @@
+# Error messages
+error:
+
+  # Message that appears when you don't have permission to do something.
+  # Variables: %permission%
+  nopermission: '&4You don''t have permission to do that! &c(%permission%)'
+
+  # Message that appears when you type a sub-command with /chat that doesn't exist
+  # Variables: %subcommand%, %label%
+  invalidsubcommand: '&4The sub-command &c/%label% %subcommand% &4does not exist!'
+
+# Messages for /chat help
+help:
+
+  # Header for the help page
+  header: '&8&m--------&b AceChat Help &8&m--------'
+
+  # Format for one help item
+  # Variables: %command%, %description%
+  item: '&b%command% &8- &b%description%'
+
+# Descriptions for commands, displayed in /chat help
+command-descriptions:
+
+  # Description for /chat version
+  version: 'Shows the plugin version'
+
+  # Description for /chat help
+  help: 'Shows a page with all the commands'
+
+  # Description for /chat reload
+  reload: 'Reloads the plugin'
+
+  # Description for /chat clear
+  clear: 'Clears the chat'
+
+# Message for /chat version
+# Variables: %version%
+version: |
+  &8&m--------&b AceChat &8&m--------
+  &b By SlagHoedje
+  &b Version %version%
+
+# Message when chat is cleared
+# This does not include the clear lines specified in config.yml
+# Variables: %player%
+chatclear: |
+  &b&l  The chat has been cleared by %player%
+  &r &r
+
+# Messages for /chat reload
+reload:
+
+  # Message that appears before reload
+  before: '&bReloading AceChat...'
+
+  # Message that appears after reload
+  after: '&bAceChat reloaded!'
