@@ -7,8 +7,22 @@ formats:
   # The format for the global chat
   chat: 'chat'
 
-  # The format for private messages
-  private: 'private'
+  # The format for private messages from the senders POV
+  private-sender: 'privatesender'
+
+  # The format for private messages from the receivers POV
+  private-receiver: 'privatereceiver'
+
+  # The format for join messages
+  join: 'join'
+
+  # The format for leave messages
+  leave: 'leave'
+
+# The amount of lines to be cleared when clearing chat
+# This does not include the custom message in messages.yml
+# Set default to 102, while the chat length is 100, just to be safe
+clear-length: 102
 
 # The event priority for all the events in this plugin,
 # starting with LOWEST, and ending with HIGHEST
@@ -21,7 +35,12 @@ event-priority:
   # any problems
   chat: 'HIGHEST'
 
-# The amount of lines to be cleared when clearing chat
-# This does not include the custom message in messages.yml
-# Set default to 102, while the chat length is 100, just to be safe
-clear-length: 102
+  # Join event is used to format the join message.
+  # HIGHEST is so other plugins can cancel the message, for example
+  # when you are vanished
+  join: 'HIGHEST'
+
+  # Leave event is used to format the leave message.
+  # HIGHEST is so other plugins can cancel the message, for example
+  # when you are vanished
+  leave: 'HIGHEST'

@@ -1,0 +1,20 @@
+# leave.yml
+# For how this file is written, please see 'formats/chat.yml'
+
+parts:
+  1:
+    text: '&b%vault_prefix% '
+    hover: '&aRank: %vault_rank%'
+    click:
+      type: 'SUGGEST_COMMAND'
+      text: '/buy'
+
+  2:
+    text: '%player-nick%'
+    hover: 'Name: %player%'
+    click:
+      type: 'SUGGEST_COMMAND'
+      text: '/pm %player%'
+
+  3:
+    text: '&e left.'

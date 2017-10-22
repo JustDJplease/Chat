@@ -11,6 +11,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -113,6 +115,8 @@ public class AceChat extends JavaPlugin {
 
         if(formats.isEmpty()) {
             formats.add("chat.yml");
+            formats.add("join.yml");
+            formats.add("leave.yml");
         }
 
         for(String fileName : formats) {
@@ -128,6 +132,12 @@ public class AceChat extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvent(AsyncPlayerChatEvent.class, eventListener, parsePriority("event-priority.chat", EventPriority.HIGHEST),
                 (listener, event) -> ((EventListener) listener).onChat((AsyncPlayerChatEvent) event), this);
+
+        Bukkit.getPluginManager().registerEvent(PlayerJoinEvent.class, eventListener, parsePriority("event-priority.join", EventPriority.HIGHEST),
+                (listener, event) -> ((EventListener) listener).onJoin((PlayerJoinEvent) event), this);
+
+        Bukkit.getPluginManager().registerEvent(PlayerQuitEvent.class, eventListener, parsePriority("event-priority.leave", EventPriority.HIGHEST),
+                (listener, event) -> ((EventListener) listener).onLeave((PlayerQuitEvent) event), this);
 
     }
 

@@ -3,6 +3,8 @@ package com.slaghoedje.acechat;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.slaghoedje.acechat.util.Lang;
 import com.slaghoedje.acechat.util.Permissions;
@@ -26,7 +28,26 @@ public class EventListener implements Listener {
         if(Permissions.has(event.getPlayer(), "acechat.user.chat")) {
             ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.chat", "chat"));
             Bukkit.spigot().broadcast(chatFormat.getJSONMessage(event.getPlayer(), null, event.getMessage()));
+            System.out.println(event.getPlayer().getName() + ": " + event.getMessage());
         } else
             event.getPlayer().sendMessage(Lang.format("error.nopermission").replaceAll("%permission%", "acechat.user.chat"));
+    }
+
+    public void onJoin(PlayerJoinEvent event) {
+        if(event.getJoinMessage() == null || event.getJoinMessage().isEmpty()) return;
+        event.setJoinMessage("");
+
+        ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.join", "join"));
+        Bukkit.spigot().broadcast(chatFormat.getJSONMessage(event.getPlayer(), null, "undefined"));
+        System.out.println(event.getPlayer().getName() + " joined");
+    }
+
+    public void onLeave(PlayerQuitEvent event) {
+        if(event.getQuitMessage() == null || event.getQuitMessage().isEmpty()) return;
+        event.setQuitMessage("");
+
+        ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.leave", "leave"));
+        Bukkit.spigot().broadcast(chatFormat.getJSONMessage(event.getPlayer(), null, "undefined"));
+        System.out.println(event.getPlayer().getName() + " left");
     }
 }
