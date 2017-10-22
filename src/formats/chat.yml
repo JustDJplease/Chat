@@ -17,7 +17,7 @@ parts:
   # You can call the parts anything, it's ordered by order, not by name
   1:
     text: '&b%vault_prefix% '
-    hover: '&aRank: %vault_rank%' # <- If that's '', it will be ignored
+    hover: '&bRank: %vault_rank%' # <- If that's '', it will be ignored
     click:
       # Choose from OPEN_FILE, OPEN_URL, RUN_COMMAND, SUGGEST_COMMAND
       # It's pretty self-explanatory what they do
@@ -25,12 +25,12 @@ parts:
       text: '/buy'
 
   2:
-    text: '%player-nick%&f: '
-    hover: 'Name: %player%'
+    text: '&b%player-nick%&8: '
+    hover: '&bReal name: %player%'
     click:
       type: 'SUGGEST_COMMAND'
       text: '/pm %player%'
 
   3:
-    text: '&3%message%'
+    text: '&b%message%'
     # Anything you don't need, you can just leave out

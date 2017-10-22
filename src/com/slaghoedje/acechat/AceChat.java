@@ -17,6 +17,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.slaghoedje.acechat.commands.ChatCommand;
+import com.slaghoedje.acechat.commands.MsgReplyCommand;
 import com.slaghoedje.acechat.util.Lang;
 import com.slaghoedje.acechat.util.Permissions;
 
@@ -60,15 +61,10 @@ public class AceChat extends JavaPlugin {
 
         registerEvents();
 
+        MsgReplyCommand msgReplyCommandExecutor = new MsgReplyCommand(this);
         getCommand("chat").setExecutor(new ChatCommand(this));
-    }
-
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player player = (Player) sender;
-        ChatFormat chatFormat = chatFormats.get(config.getString("formats.chat", "chat"));
-        chatFormat.send(player, player, null, "Hey.");
-
-        return true;
+        getCommand("tell").setExecutor(msgReplyCommandExecutor);
+        getCommand("reply").setExecutor(msgReplyCommandExecutor);
     }
 
     public void onDisable() {
@@ -117,6 +113,8 @@ public class AceChat extends JavaPlugin {
             formats.add("chat.yml");
             formats.add("join.yml");
             formats.add("leave.yml");
+            formats.add("privatesender.yml");
+            formats.add("privatereceiver.yml");
         }
 
         for(String fileName : formats) {

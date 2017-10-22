@@ -9,7 +9,10 @@ main: com.slaghoedje.acechat.AceChat
 commands:
   tell:
     description: Send a private message to someone
-    aliases: [pm, message, msg, t]
+    aliases: [pm, message, msg, t, whisper]
+  reply:
+    description: Reply to a private message you have received
+    aliases: [r]
   chat:
     description: Main AceChat command
     aliases: [acechat, ac]
@@ -49,10 +52,14 @@ permissions:
     default: op
 
   acechat.user.*:
-    description: Gives access to all default user permissions.
+    description: Gives access to all user permissions.
     default: true
     children:
       acechat.user.chat: true
+      acechat.user.msg: true
   acechat.user.chat:
     description: Allow the user to send chat messages.
+    default: true
+  acechat.user.msg:
+    description: Allow the user to send private messages and reply to them
     default: true

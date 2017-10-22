@@ -12,6 +12,18 @@ error:
   # Message that appears when you try to chat while the chat is muted
   chatmuted: '&4You can''t chat while the chat is muted!'
 
+  # Message that appears when you miss some arguments with /msg
+  # Variables: %label%
+  toolessargsmsg: '&4Usage: &c/%label% <player> <message>'
+
+  # Message that appears when you miss arguments with /reply
+  # Variables: %label%
+  toolessargsreply: '&4Usage: &c/%label% <message>'
+
+  # Message that appears when the specified player is not online
+  # Variables: %player%
+  playernotonline: '&4The player &c%player% &4is not online!'
+
 # Messages for /chat help
 help:
 

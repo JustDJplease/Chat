@@ -1,0 +1,15 @@
+# privatesender.yml
+# For how this file is written, please see 'formats/chat.yml'
+# In this file, %player% represents the sender, and %other% represents the receiver
+# All PlaceholderAPI placeholders used are targeted to %player%
+
+parts:
+  1:
+    text: '&8[&bYou &8-> '
+
+  2:
+    text: '&b%other-nick%'
+    hover: '&bReal name: %other%'
+
+  3:
+    text: '&8]: &b%message%'
