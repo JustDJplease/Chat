@@ -52,6 +52,9 @@ command-descriptions:
   # Description for /chat mute
   mute: '(Un)mutes the global chat'
 
+  # Desscription for /chat spy
+  spy: 'Enables/Disables social spy'
+
 # Message for /chat version
 # Variables: %version%
 version: |
@@ -85,3 +88,15 @@ global-mute:
   # Message for when the chat gets unmuted
   # Variables: %player%
   unmute: '&b&l  The chat has been unmuted by %player%'
+
+spy:
+
+  # Message for when someone enables the social-spy
+  enable: '&bSocial spy enabled!'
+
+  # Message for when someone disables the social-spy
+  disable: '&bSocial spy disabled!'
+
+  # Social spy format for when social spy is enabled and someone messages someone else
+  # Variables: %player1%, %player2%, %message%
+  format: '&8[&bSpy&8] [&b%player1% &8-> &b%player2%&8]: &f%message%'

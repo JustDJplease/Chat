@@ -17,6 +17,7 @@ public class EventListener implements Listener {
     }
 
     public void onChat(AsyncPlayerChatEvent event) {
+        if(aceChat.config.getString("formats.chat", "chat").equalsIgnoreCase("none")) return;
         if(event.isCancelled()) return;
         event.setCancelled(true);
 
@@ -34,6 +35,7 @@ public class EventListener implements Listener {
     }
 
     public void onJoin(PlayerJoinEvent event) {
+        if(aceChat.config.getString("formats.join", "join").equalsIgnoreCase("none")) return;
         if(event.getJoinMessage() == null || event.getJoinMessage().isEmpty()) return;
         event.setJoinMessage("");
 
@@ -43,11 +45,14 @@ public class EventListener implements Listener {
     }
 
     public void onLeave(PlayerQuitEvent event) {
+        if(aceChat.config.getString("formats.leave", "leave").equalsIgnoreCase("none")) return;
         if(event.getQuitMessage() == null || event.getQuitMessage().isEmpty()) return;
         event.setQuitMessage("");
 
         ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.leave", "leave"));
         Bukkit.spigot().broadcast(chatFormat.getJSONMessage(event.getPlayer(), null, "undefined"));
         System.out.println(event.getPlayer().getName() + " left");
+
+        if(aceChat.socialSpy.contains(event.getPlayer())) aceChat.socialSpy.remove(event.getPlayer());
     }
 }

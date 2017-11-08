@@ -29,6 +29,7 @@ permissions:
       acechat.admin.clearchat.bypass: true
       acechat.admin.mutechat: true
       acechat.admin.mutechat.bypass: true
+      acechat.admin.socialspy: true
   acechat.admin.clearchat:
     description: Allows the user to clear the chat
     default: op
@@ -49,6 +50,9 @@ permissions:
     default: op
   acechat.admin.mutechat.bypass:
     description: Allows the user to chat while the global chat is muted
+    default: op
+  acechat.admin.socialspy:
+    description: Allows the user to enable and disable social spy
     default: op
 
   acechat.user.*:

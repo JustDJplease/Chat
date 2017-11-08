@@ -59,6 +59,15 @@ public class MsgReplyCommand implements CommandExecutor {
             ChatFormat receiverFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.private-receiver", "privatereceiver"));
             receiverFormat.send(other, (Player) sender, other, message);
 
+            for(Player spyer : aceChat.socialSpy) {
+                if(spyer.equals(sender) || spyer.equals(other)) continue;
+
+                spyer.sendMessage(Lang.format("spy.format")
+                        .replaceAll("%player1%", sender.getName())
+                        .replaceAll("%player2%", other.getName())
+                        .replaceAll("%message%", message));
+            }
+
             reply.put(sender.getName(), other.getName());
             reply.put(other.getName(), sender.getName());
         } else if(command.getName().equalsIgnoreCase("reply")) {

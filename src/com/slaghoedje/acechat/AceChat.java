@@ -25,6 +25,7 @@ import net.milkbowl.vault.permission.Permission;
 
 public class AceChat extends JavaPlugin {
     public Map<String, ChatFormat> chatFormats;
+    public List<Player> socialSpy;
 
     public File configFile;
     public FileConfiguration config;
@@ -39,6 +40,7 @@ public class AceChat extends JavaPlugin {
         loadConfig();
 
         Lang.setAceChat(this);
+        socialSpy = new ArrayList<>();
 
         if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             papiPresent = true;

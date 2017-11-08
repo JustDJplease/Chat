@@ -12,4 +12,4 @@ parts:
     hover: '&bReal name: &b7%player%'
 
   3:
-    text: ' &8-> &bYou&8]: &b%message%'
+    text: ' &8-> &bYou&8]: &f%message%'
