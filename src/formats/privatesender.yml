@@ -9,7 +9,7 @@ parts:
 
   2:
     text: '&b%other-nick%'
-    hover: '&bReal name: %other%'
+    hover: '&bReal name: &7%other%'
 
   3:
-    text: '&8]: &b%message%'
+    text: '&8]: &f%message%'

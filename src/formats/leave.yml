@@ -4,14 +4,14 @@
 parts:
   1:
     text: '&b%vault_prefix% '
-    hover: '&aRank: %vault_rank%'
+    hover: '&bRank: &7%vault_rank%'
     click:
       type: 'SUGGEST_COMMAND'
       text: '/buy'
 
   2:
     text: '%player-nick%'
-    hover: 'Name: %player%'
+    hover: '&bName: &7%player%'
     click:
       type: 'SUGGEST_COMMAND'
       text: '/pm %player%'
