@@ -2,17 +2,19 @@ package com.slaghoedje.acechat;
 
 import java.io.File;
 
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.*;
+import net.md_5.bungee.chat.ComponentSerializer;
+import net.minecraft.server.v1_8_R1.ChatComponentText;
+import net.minecraft.server.v1_8_R1.ChatSerializer;
+import net.minecraft.server.v1_8_R1.IChatBaseComponent;
+import net.minecraft.server.v1_8_R1.PacketPlayOutChat;
 
 public class ChatFormat {
     private final AceChat aceChat;
@@ -29,11 +31,22 @@ public class ChatFormat {
     }
 
     public void send(Player receiver, Player player, Player other, String message) {
-        receiver.spigot().sendMessage(getJSONMessage(player, other, message));
+        TextComponent textComponent = getJSONMessage(player, other, message);
+
+        IChatBaseComponent chatBaseComponent = ChatSerializer.a(ComponentSerializer.toString(textComponent));
+        //IChatBaseComponent chatBaseComponent = ChatSerializer.a("[\"\",{\"text\":\"/menu\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/menu\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Click here!\",\"color\":\"green\"}]}}},{\"text\":\" or \",\"color\":\"gray\"},{\"text\":\"/is\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/is\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Click here!\",\"color\":\"green\"}]}}},{\"text\":\" brings up a gui with everything you need!\",\"color\":\"gray\"}]");
+        //PacketPlayOutChat chat = new PacketPlayOutChat(null);
+        ((CraftPlayer) receiver).getHandle().sendMessage(chatBaseComponent);
+    }
+
+    public void broadcast(Player player, Player other, String message) {
+        for(Player receiver : aceChat.getServer().getOnlinePlayers()) {
+            send(receiver, player, other, message);
+        }
     }
 
     public TextComponent getJSONMessage(Player player, Player other, String message) {
-        TextComponent textComponent = new TextComponent();
+        TextComponent textComponent = new TextComponent("");
 
         for(String partKey : fileConfiguration.getConfigurationSection("parts").getKeys(false)) {
             ConfigurationSection partSection = fileConfiguration.getConfigurationSection("parts." + partKey);

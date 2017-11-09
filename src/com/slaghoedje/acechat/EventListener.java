@@ -28,7 +28,7 @@ public class EventListener implements Listener {
 
         if(Permissions.has(event.getPlayer(), "acechat.user.chat")) {
             ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.chat", "chat"));
-            Bukkit.spigot().broadcast(chatFormat.getJSONMessage(event.getPlayer(), null, event.getMessage()));
+            chatFormat.broadcast(event.getPlayer(), null, event.getMessage());
             System.out.println(event.getPlayer().getName() + ": " + event.getMessage());
         } else
             event.getPlayer().sendMessage(Lang.format("error.nopermission").replaceAll("%permission%", "acechat.user.chat"));
@@ -40,7 +40,7 @@ public class EventListener implements Listener {
         event.setJoinMessage("");
 
         ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.join", "join"));
-        Bukkit.spigot().broadcast(chatFormat.getJSONMessage(event.getPlayer(), null, "undefined"));
+        chatFormat.broadcast(event.getPlayer(), null, "undefined");
         System.out.println(event.getPlayer().getName() + " joined");
     }
 
@@ -50,7 +50,7 @@ public class EventListener implements Listener {
         event.setQuitMessage("");
 
         ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.leave", "leave"));
-        Bukkit.spigot().broadcast(chatFormat.getJSONMessage(event.getPlayer(), null, "undefined"));
+        chatFormat.broadcast(event.getPlayer(), null, "undefined");
         System.out.println(event.getPlayer().getName() + " left");
 
         if(aceChat.socialSpy.contains(event.getPlayer())) aceChat.socialSpy.remove(event.getPlayer());
