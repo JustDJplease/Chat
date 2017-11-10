@@ -54,7 +54,7 @@ public class ChatFormat {
             ConfigurationSection partSection = fileConfiguration.getConfigurationSection("parts." + partKey);
             String text = partSection.getString("text", "undefined");
 
-            String hoverText = "invalid";
+            String hoverText = "";
             Object hoverTextObject = partSection.get("hover");
 
             if(hoverTextObject instanceof String) hoverText = (String) hoverTextObject;
