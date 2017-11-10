@@ -1,6 +1,8 @@
 package com.slaghoedje.acechat;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -51,7 +53,17 @@ public class ChatFormat {
         for(String partKey : fileConfiguration.getConfigurationSection("parts").getKeys(false)) {
             ConfigurationSection partSection = fileConfiguration.getConfigurationSection("parts." + partKey);
             String text = partSection.getString("text", "undefined");
-            String hoverText = partSection.getString("hover", "");
+
+            String hoverText = "invalid";
+            Object hoverTextObject = partSection.get("hover");
+
+            if(hoverTextObject instanceof String) hoverText = (String) hoverTextObject;
+            else if(hoverTextObject instanceof List) {
+                try {
+                    List<String> hoverList = (List<String>) hoverTextObject;
+                    hoverText = String.join("\n", hoverList);
+                } catch(Exception ignored) { }
+            }
 
             ClickEvent.Action clickAction = null;
             try {
@@ -94,6 +106,7 @@ public class ChatFormat {
         }
 
         toFormat = toFormat.replaceAll("%message%", message);
+        toFormat = toFormat.replaceAll("\\\\n", "\n");
 
         return toFormat;
     }
