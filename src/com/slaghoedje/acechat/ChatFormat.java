@@ -33,12 +33,7 @@ public class ChatFormat {
     }
 
     public void send(Player receiver, Player player, Player other, String message) {
-        TextComponent textComponent = getJSONMessage(player, other, message);
-
-        IChatBaseComponent chatBaseComponent = ChatSerializer.a(ComponentSerializer.toString(textComponent));
-        //IChatBaseComponent chatBaseComponent = ChatSerializer.a("[\"\",{\"text\":\"/menu\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/menu\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Click here!\",\"color\":\"green\"}]}}},{\"text\":\" or \",\"color\":\"gray\"},{\"text\":\"/is\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/is\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Click here!\",\"color\":\"green\"}]}}},{\"text\":\" brings up a gui with everything you need!\",\"color\":\"gray\"}]");
-        //PacketPlayOutChat chat = new PacketPlayOutChat(null);
-        ((CraftPlayer) receiver).getHandle().sendMessage(chatBaseComponent);
+        receiver.spigot().sendMessage(getJSONMessage(player, other, message));
     }
 
     public void broadcast(Player player, Player other, String message) {
