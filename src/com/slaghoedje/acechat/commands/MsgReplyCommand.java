@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 import com.slaghoedje.acechat.AceChat;
 import com.slaghoedje.acechat.ChatFormat;
+import com.slaghoedje.acechat.util.FormatConfigParser;
 import com.slaghoedje.acechat.util.Lang;
 import com.slaghoedje.acechat.util.Permissions;
 
@@ -53,11 +54,11 @@ public class MsgReplyCommand implements CommandExecutor {
             String[] messageArray = Arrays.copyOfRange(args, 1, args.length);
             String message = String.join(" ", messageArray);
 
-            ChatFormat senderFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.private-sender", "privatesender"));
-            senderFormat.send((Player) sender, (Player) sender, other, message);
+            ChatFormat senderFormat = FormatConfigParser.parseSingleFormat("formats.private-sender", "privatesender");
+            if(senderFormat != null) senderFormat.send((Player) sender, (Player) sender, other, message);
 
-            ChatFormat receiverFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.private-receiver", "privatereceiver"));
-            receiverFormat.send(other, (Player) sender, other, message);
+            ChatFormat receiverFormat = FormatConfigParser.parseSingleFormat("formats.private-receiver", "privatereceiver");
+            if(receiverFormat != null) receiverFormat.send(other, (Player) sender, other, message);
 
             for(Player spyer : aceChat.socialSpy) {
                 if(spyer.equals(sender) || spyer.equals(other)) continue;

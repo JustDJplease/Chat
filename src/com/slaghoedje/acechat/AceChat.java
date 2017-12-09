@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.slaghoedje.acechat.commands.ChatCommand;
 import com.slaghoedje.acechat.commands.MsgReplyCommand;
+import com.slaghoedje.acechat.util.FormatConfigParser;
 import com.slaghoedje.acechat.util.Lang;
 import com.slaghoedje.acechat.util.Permissions;
 
@@ -39,6 +40,7 @@ public class AceChat extends JavaPlugin {
     public void onEnable() {
         loadConfig();
 
+        FormatConfigParser.setAceChat(this);
         Lang.setAceChat(this);
         socialSpy = new ArrayList<>();
 

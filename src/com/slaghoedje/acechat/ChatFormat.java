@@ -2,21 +2,17 @@ package com.slaghoedje.acechat;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+
+import com.slaghoedje.acechat.util.Permissions;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.*;
-import net.md_5.bungee.chat.ComponentSerializer;
-import net.minecraft.server.v1_8_R1.ChatComponentText;
-import net.minecraft.server.v1_8_R1.ChatSerializer;
-import net.minecraft.server.v1_8_R1.IChatBaseComponent;
-import net.minecraft.server.v1_8_R1.PacketPlayOutChat;
 
 public class ChatFormat {
     private final AceChat aceChat;
@@ -55,6 +51,7 @@ public class ChatFormat {
             if(hoverTextObject instanceof String) hoverText = (String) hoverTextObject;
             else if(hoverTextObject instanceof List) {
                 try {
+                    //noinspection unchecked
                     List<String> hoverList = (List<String>) hoverTextObject;
                     hoverText = String.join("\n", hoverList);
                 } catch(Exception ignored) { }
@@ -100,8 +97,10 @@ public class ChatFormat {
             toFormat = PlaceholderAPI.setPlaceholders(player, toFormat);
         }
 
-        toFormat = toFormat.replaceAll("%message%", message);
         toFormat = toFormat.replaceAll("\\\\n", "\n");
+
+        if(Permissions.has(player, "acechat.color")) message = ChatColor.translateAlternateColorCodes('&', message);
+        toFormat = toFormat.replaceAll("%message%", message);
 
         return toFormat;
     }

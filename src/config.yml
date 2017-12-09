@@ -6,6 +6,16 @@
 formats:
 
   # The format for the global chat
+  # With this, you can do two things:
+  # 1. Global chat formats
+  # With this, everyone will have the same chat format
+  # Example: chat: 'chat' (default)
+  # 2. Per-group chat formats
+  # With this, you can specify separate chat formats for separate Vault permission groups.
+  # Example:
+  # chat:
+  #   default: 'chat'
+  #   owner: 'chat-owner'
   chat: 'chat'
 
   # The format for private messages from the senders POV
@@ -15,15 +25,23 @@ formats:
   private-receiver: 'privatereceiver'
 
   # The format for join messages
+  # With this, you can also get global and per-group formats
+  # For explanation, see the command above formats.chat
   join: 'join'
 
   # The format for leave messages
+  # With this, you can also get global and per-group formats
+  # For explanation, see the command above formats.chat
   leave: 'leave'
 
 # The amount of lines to be cleared when clearing chat
 # This does not include the custom message in messages.yml
 # Set default to 102, while the chat length is 100, just to be safe
 clear-length: 102
+
+# If a join or quit format has been set to 'none', should it print out nothing (if true),
+# or let it be handled by another plugin/do nothing/print out default message? (if false)
+jl-none-on-none: true
 
 # The event priority for all the events in this plugin,
 # starting with LOWEST, and ending with HIGHEST

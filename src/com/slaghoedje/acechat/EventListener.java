@@ -6,6 +6,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.slaghoedje.acechat.util.FormatConfigParser;
 import com.slaghoedje.acechat.util.Lang;
 import com.slaghoedje.acechat.util.Permissions;
 
@@ -17,7 +18,8 @@ public class EventListener implements Listener {
     }
 
     public void onChat(AsyncPlayerChatEvent event) {
-        if(aceChat.config.getString("formats.chat", "chat").equalsIgnoreCase("none")) return;
+        ChatFormat chatFormat = FormatConfigParser.parseMultiFormat(event.getPlayer(),"formats.chat", "chat");
+        if(chatFormat == null) return;
         if(event.isCancelled()) return;
         event.setCancelled(true);
 
@@ -27,7 +29,6 @@ public class EventListener implements Listener {
         }
 
         if(Permissions.has(event.getPlayer(), "acechat.user.chat")) {
-            ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.chat", "chat"));
             chatFormat.broadcast(event.getPlayer(), null, event.getMessage());
             System.out.println(event.getPlayer().getName() + ": " + event.getMessage());
         } else
@@ -35,21 +36,35 @@ public class EventListener implements Listener {
     }
 
     public void onJoin(PlayerJoinEvent event) {
-        if(aceChat.config.getString("formats.join", "join").equalsIgnoreCase("none")) return;
-        if(event.getJoinMessage() == null || event.getJoinMessage().isEmpty()) return;
+        boolean jlnoneonnone = aceChat.config.getBoolean("jl-none-on-none", true);
+        ChatFormat chatFormat = FormatConfigParser.parseMultiFormat(event.getPlayer(),"formats.join", "join");
+
+        if(jlnoneonnone) {
+            if(event.getJoinMessage() == null || event.getJoinMessage().isEmpty()) return;
+            event.setJoinMessage("");
+        }
+
+        if(chatFormat == null) return;
+        if(!jlnoneonnone && (event.getJoinMessage() == null || event.getJoinMessage().isEmpty())) return;
         event.setJoinMessage("");
 
-        ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.join", "join"));
         chatFormat.broadcast(event.getPlayer(), null, "undefined");
         System.out.println(event.getPlayer().getName() + " joined");
     }
 
     public void onLeave(PlayerQuitEvent event) {
-        if(aceChat.config.getString("formats.leave", "leave").equalsIgnoreCase("none")) return;
-        if(event.getQuitMessage() == null || event.getQuitMessage().isEmpty()) return;
+        boolean jlnoneonnone = aceChat.config.getBoolean("jl-none-on-none", true);
+        ChatFormat chatFormat = FormatConfigParser.parseMultiFormat(event.getPlayer(),"formats.leave", "leave");
+
+        if(jlnoneonnone) {
+            if(event.getQuitMessage() == null || event.getQuitMessage().isEmpty()) return;
+            event.setQuitMessage("");
+        }
+
+        if(chatFormat == null) return;
+        if(!jlnoneonnone && (event.getQuitMessage() == null || event.getQuitMessage().isEmpty())) return;
         event.setQuitMessage("");
 
-        ChatFormat chatFormat = aceChat.chatFormats.get(aceChat.config.getString("formats.leave", "leave"));
         chatFormat.broadcast(event.getPlayer(), null, "undefined");
         System.out.println(event.getPlayer().getName() + " left");
 
