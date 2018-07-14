@@ -22,9 +22,6 @@ public class ChatCommand implements CommandExecutor {
         subCommands.add(new ChatHelpCommand(aceChat, this));
         subCommands.add(new ChatVersionCommand(aceChat));
         subCommands.add(new ChatReloadCommand(aceChat));
-        subCommands.add(new ChatClearCommand(aceChat));
-        subCommands.add(new ChatMuteCommand(aceChat));
-        subCommands.add(new ChatSpyCommand(aceChat));
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

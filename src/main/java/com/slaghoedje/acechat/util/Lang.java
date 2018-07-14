@@ -12,6 +12,6 @@ public class Lang {
     }
 
     public static String format(String key) {
-        return ChatColor.translateAlternateColorCodes('&', aceChat.messages.getString(key, key));
+        return ChatColor.translateAlternateColorCodes('&', aceChat.messages.getString(key, key).replaceAll("%arrow%", "\u00BB"));
     }
 }

@@ -28,11 +28,11 @@ error:
 help:
 
   # Header for the help page
-  header: '&8&m--------&b AceChat Help &8&m--------'
+  header: '&e&l*&7&m------------&e&l Chat &7&m------------&e&l*'
 
   # Format for one help item
   # Variables: %command%, %description%
-  item: '&b%command% &8- &b%description%'
+  item: '&e%command% &8- &7%description%'
 
 # Descriptions for commands, displayed in /chat help
 command-descriptions:
@@ -58,25 +58,23 @@ command-descriptions:
 # Message for /chat version
 # Variables: %version%
 version: |
-  &8&m--------&b AceChat &8&m--------
-  &b By SlagHoedje
-  &b Version %version%
+  &e&l*&7&m------------&e&l Chat &7&m------------&e&l*
+  &7Running a custom version by SlagHoedje & TheBlockBender
+  &7Version &e%version%
 
 # Message when chat is cleared
 # This does not include the clear lines specified in config.yml
 # Variables: %player%
-chatclear: |
-  &b&l  The chat has been cleared by %player%
-  &r &r
+chatclear: ''
 
 # Messages for /chat reload
 reload:
 
   # Message that appears before reload
-  before: '&bReloading AceChat...'
+  before: '&e» &7Reloading Chat...'
 
   # Message that appears after reload
-  after: '&bAceChat reloaded!'
+  after: '&e» &7Chat reloaded!'
 
 # Messages for /chat mute
 global-mute:
