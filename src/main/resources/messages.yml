@@ -48,6 +48,9 @@ command-descriptions:
   # Description for /chat reload
   reload: 'Reloads the plugin'
 
+  # Description for /chat time
+  time: 'Shows server time'
+
 # Message for /chat version
 # Variables: %version%
 version: |
