@@ -1,3 +1,7 @@
+/*
+ * Notice: This plugin is a heavily modified copy from the AceChat plugin. Original author is SlagHoedje. This file was modified by TheBlockBender / JustDJplease. The original resource can be found at https://www.spigotmc.org/resources/acechat.48695/
+ */
+
 package me.theblockbender.hive;
 
 import me.theblockbender.hive.commands.ChatCommand;
@@ -19,7 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.util.*;
 
-//copyright
+
 
 public class Chat extends JavaPlugin {
     public Map<String, ChatFormat> chatFormats;
