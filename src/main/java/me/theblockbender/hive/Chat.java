@@ -20,9 +20,6 @@ import java.io.File;
 import java.util.*;
 
 public class Chat extends JavaPlugin {
-
-    // TODO IntelIJ suggestions.
-
     public Map<String, ChatFormat> chatFormats;
     public FileConfiguration config;
     public FileConfiguration messages;
