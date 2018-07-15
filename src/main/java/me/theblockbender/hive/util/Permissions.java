@@ -1,8 +1,7 @@
-package com.slaghoedje.acechat.util;
-
-import org.bukkit.command.CommandSender;
+package me.theblockbender.hive.util;
 
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.command.CommandSender;
 
 public class Permissions {
     public static boolean vault = false;

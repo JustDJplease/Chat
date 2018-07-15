@@ -1,25 +1,24 @@
-package com.slaghoedje.acechat.commands.sub;
+package me.theblockbender.hive.commands.sub;
 
+import me.theblockbender.hive.Chat;
 import org.bukkit.command.CommandSender;
-
-import com.slaghoedje.acechat.AceChat;
 
 public abstract class SubCommand {
     private String permission = "";
     private String description = "";
     private final String[] commands;
-    protected final AceChat aceChat;
+    protected final Chat chat;
 
-    public SubCommand(AceChat aceChat, String... commands) {
+    SubCommand(Chat chat, String... commands) {
         this.commands = commands;
-        this.aceChat = aceChat;
+        this.chat = chat;
     }
 
-    protected void setPermission(String permission) {
+    void setPermission(String permission) {
         this.permission = permission;
     }
 
-    protected void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description;
     }
 

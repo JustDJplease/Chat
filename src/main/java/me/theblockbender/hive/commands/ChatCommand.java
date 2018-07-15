@@ -1,27 +1,29 @@
-package com.slaghoedje.acechat.commands;
+package me.theblockbender.hive.commands;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import me.theblockbender.hive.Chat;
+import me.theblockbender.hive.commands.sub.ChatHelpCommand;
+import me.theblockbender.hive.commands.sub.ChatReloadCommand;
+import me.theblockbender.hive.commands.sub.ChatVersionCommand;
+import me.theblockbender.hive.commands.sub.SubCommand;
+import me.theblockbender.hive.util.Lang;
+import me.theblockbender.hive.util.Permissions;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.slaghoedje.acechat.AceChat;
-import com.slaghoedje.acechat.commands.sub.*;
-import com.slaghoedje.acechat.util.Lang;
-import com.slaghoedje.acechat.util.Permissions;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ChatCommand implements CommandExecutor {
     public List<SubCommand> subCommands;
 
-    public ChatCommand(AceChat aceChat) {
+    public ChatCommand(Chat chat) {
         subCommands = new ArrayList<>();
-        subCommands.add(new ChatHelpCommand(aceChat, this));
-        subCommands.add(new ChatVersionCommand(aceChat));
-        subCommands.add(new ChatReloadCommand(aceChat));
+        subCommands.add(new ChatHelpCommand(chat, this));
+        subCommands.add(new ChatVersionCommand(chat));
+        subCommands.add(new ChatReloadCommand(chat));
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

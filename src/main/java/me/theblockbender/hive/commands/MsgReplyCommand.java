@@ -1,35 +1,34 @@
-package com.slaghoedje.acechat.commands;
+package me.theblockbender.hive.commands;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Stream;
-
+import me.theblockbender.hive.Chat;
+import me.theblockbender.hive.ChatFormat;
+import me.theblockbender.hive.util.FormatConfigParser;
+import me.theblockbender.hive.util.Lang;
+import me.theblockbender.hive.util.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.slaghoedje.acechat.AceChat;
-import com.slaghoedje.acechat.ChatFormat;
-import com.slaghoedje.acechat.util.FormatConfigParser;
-import com.slaghoedje.acechat.util.Lang;
-import com.slaghoedje.acechat.util.Permissions;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Stream;
 
 public class MsgReplyCommand implements CommandExecutor {
-    private final AceChat aceChat;
+    private final Chat chat;
     private Map<String, String> reply;
 
 
-    public MsgReplyCommand(AceChat aceChat) {
-        this.aceChat = aceChat;
+    public MsgReplyCommand(Chat chat) {
+        this.chat = chat;
         reply = new HashMap<>();
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!Permissions.has(sender, "acechat.user.msg")) {
-            sender.sendMessage(Lang.format("error.nopermission").replaceAll("%permission%", "acechat.user.msg"));
+        if (!Permissions.has(sender, "chat.user.msg")) {
+            sender.sendMessage(Lang.format("error.nopermission").replaceAll("%permission%", "chat.user.msg"));
             return true;
         }
 
@@ -59,16 +58,6 @@ public class MsgReplyCommand implements CommandExecutor {
 
             ChatFormat receiverFormat = FormatConfigParser.parseSingleFormat("formats.private-receiver", "privatereceiver");
             if(receiverFormat != null) receiverFormat.send(other, (Player) sender, other, message);
-
-            for(Player spyer : aceChat.socialSpy) {
-                if(spyer.equals(sender) || spyer.equals(other)) continue;
-
-                spyer.sendMessage(Lang.format("spy.format")
-                        .replaceAll("%player1%", sender.getName())
-                        .replaceAll("%player2%", other.getName())
-                        .replaceAll("%message%", message));
-            }
-
             reply.put(sender.getName(), other.getName());
             reply.put(other.getName(), sender.getName());
         } else if(command.getName().equalsIgnoreCase("reply")) {
@@ -78,7 +67,7 @@ public class MsgReplyCommand implements CommandExecutor {
             }
 
             String[] newArgs = Stream.concat(Arrays.stream(new String[] {reply.get(sender.getName())}), Arrays.stream(args)).toArray(String[]::new);
-            onCommand(sender, aceChat.getCommand("tell"), "tell", newArgs);
+            onCommand(sender, chat.getCommand("tell"), "tell", newArgs);
         }
 
         return true;
