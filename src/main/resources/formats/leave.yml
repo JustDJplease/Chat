@@ -1,20 +1,8 @@
-# leave.yml
-# For how this file is written, please see 'formats/chat.yml'
-
 parts:
   1:
-    text: '&b%vault_prefix% '
-    hover: '&bRank: &7%vault_rank%'
-    click:
-      type: 'SUGGEST_COMMAND'
-      text: '/buy'
-
+    text: '&e%arrow% '
   2:
-    text: '%player-nick%'
-    hover: '&bName: &7%player%'
-    click:
-      type: 'SUGGEST_COMMAND'
-      text: '/pm %player%'
-
+    text: '%vault_prefix%&e%player-nick%'
+    hover: '&7&lInformation:\n   &7Username&8: &e%player%\n   &7Current world&8: &e%player_world%&7.\n   &7Message send: &e%server_time_H:mm, z%\n\n&8%arrow%%arrow% Cannot teleport to them.'
   3:
-    text: '&e left.'
+    text: '&e has left the game'

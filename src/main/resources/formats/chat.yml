@@ -1,36 +1,9 @@
-# chat.yml
-# Default format file for global chat
-# Can be used as an example
-# PlaceholderAPI is supported!
-
-# Inbuilt placeholders:
-# %player% - Player username
-# %player-nick% - Player displayname
-# %other% - Other username (if applicable)
-# %other-nick% - Other displayname (if applicable)
-# %message% - The message typed by the user
-
-# A format is divided in parts, which you can give different
-# actions on hover and click. Color codes are allowed
 parts:
-
-  # You can call the parts anything, it's ordered by order, not by name
   1:
-    text: '&b%vault_prefix% '
-    hover: '&bRank: &7%vault_rank%' # <- If that's '', it will be ignored
+    text: '%vault_prefix%%player-nick%&8: '
+    hover: '&7&lInformation:\n   &7Username&8: &e%player%\n   &7Current world&8: &e%player_world%&7.\n   &7Message send: &e%server_time_H:mm, z%\n\n&6%arrow%%arrow% Click to teleport to them'
     click:
-      # Choose from OPEN_FILE, OPEN_URL, RUN_COMMAND, SUGGEST_COMMAND
-      # It's pretty self-explanatory what they do
-      type: 'SUGGEST_COMMAND'
-      text: '/buy'
-
+      type: 'RUN_COMMAND'
+      text: '/tp %player%'
   2:
-    text: '%player-nick% &8> '
-    hover: '&bReal name: &7%player%'
-    click:
-      type: 'SUGGEST_COMMAND'
-      text: '/pm %player%'
-
-  3:
-    text: '&f%message%'
-    # Anything you don't need, you can just leave out
+    text: '&7%message%'

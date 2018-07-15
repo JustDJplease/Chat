@@ -1,20 +1,11 @@
-# join.yml
-# For how this file is written, please see 'formats/chat.yml'
-
 parts:
   1:
-    text: '&b%vault_prefix% '
-    hover: '&bRank: &7%vault_rank%'
-    click:
-      type: 'SUGGEST_COMMAND'
-      text: '/buy'
-
+    text: '&e%arrow% '
   2:
-    text: '%player-nick%'
-    hover: '&bName: &7%player%'
+    text: '%vault_prefix%&e%player-nick%'
+    hover: '&7&lInformation:\n   &7Username&8: &e%player%\n   &7Current world&8: &e%player_world%&7.\n   &7Message send: &e%server_time_H:mm, z%\n\n&6%arrow%%arrow% Click to teleport to them'
     click:
-      type: 'SUGGEST_COMMAND'
-      text: '/pm %player%'
-
+      type: 'RUN_COMMAND'
+      text: '/tp %player%'
   3:
-    text: '&e joined.'
+    text: '&e has joined the game'

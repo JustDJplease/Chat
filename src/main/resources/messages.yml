@@ -3,26 +3,26 @@ error:
 
   # Message that appears when you don't have permission to do something.
   # Variables: %permission%
-  nopermission: '&4You don''t have permission to do that! &c(%permission%)'
+  nopermission: '&cYou do not have permission.'
 
   # Message that appears when you type a sub-command with /chat that doesn't exist
   # Variables: %subcommand%, %label%
-  invalidsubcommand: '&4The sub-command &c/%label% %subcommand% &4does not exist!'
+  invalidsubcommand: '&e%arrow%&7The sub-command &e/%label% %subcommand% &7does not exist!'
 
   # Message that appears when you try to chat while the chat is muted
-  chatmuted: '&4You can''t chat while the chat is muted!'
+  chatmuted: '&e%arrow%&7 You can''t chat while the chat is muted!'
 
   # Message that appears when you miss some arguments with /msg
   # Variables: %label%
-  toolessargsmsg: '&4Usage: &c/%label% <player> <message>'
+  toolessargsmsg: '&e%arrow% &7Usage: &e/%label% <player> <message>'
 
   # Message that appears when you miss arguments with /reply
   # Variables: %label%
-  toolessargsreply: '&4Usage: &c/%label% <message>'
+  toolessargsreply: '&e%arrow% &7Usage: &e/%label% <message>'
 
   # Message that appears when the specified player is not online
   # Variables: %player%
-  playernotonline: '&4The player &c%player% &4is not online!'
+  playernotonline: '&e%arrow% &7The player &e%player% &7is not online!'
 
 # Messages for /chat help
 help:
@@ -46,56 +46,17 @@ command-descriptions:
   # Description for /chat reload
   reload: 'Reloads the plugin'
 
-  # Description for /chat clear
-  clear: 'Clears the chat'
-
-  # Description for /chat mute
-  mute: '(Un)mutes the global chat'
-
-  # Description for /chat spy
-  spy: 'Enables/Disables social spy'
-
 # Message for /chat version
 # Variables: %version%
 version: |
   &e&l*&7&m------------&e&l Chat &7&m------------&e&l*
-  &7Running a custom version by SlagHoedje & TheBlockBender
-  &7Version &e%version%
+  &7  Plugin customised by TheBlockBender
+  &7  Version &e%version%
+  &e&l*&7&m------------------------------&e&l*
 
-# Message when chat is cleared
-# This does not include the clear lines specified in config.yml
-# Variables: %player%
-chatclear: ''
-
-# Messages for /chat reload
+ # Messages for /chat reload
 reload:
-
   # Message that appears before reload
-  before: '&e» &7Reloading Chat...'
-
+  before: '&e%arrow% &7Reloading Chat...'
   # Message that appears after reload
-  after: '&e» &7Chat reloaded!'
-
-# Messages for /chat mute
-global-mute:
-
-  # Message for when the chat gets muted
-  # Variables: %player%
-  mute: '&b&l  The chat has been muted by %player%'
-
-  # Message for when the chat gets unmuted
-  # Variables: %player%
-  unmute: '&b&l  The chat has been unmuted by %player%'
-
-# Messages for social spy. The format is also located here
-spy:
-
-  # Message for when someone enables the social-spy
-  enable: '&bSocial spy enabled!'
-
-  # Message for when someone disables the social-spy
-  disable: '&bSocial spy disabled!'
-
-  # Social spy format for when social spy is enabled and someone messages someone else
-  # Variables: %player1%, %player2%, %message%
-  format: '&8[&c&lSpy&8] [&b%player1% &8-> &b%player2%&8]: &f%message%'
+  after: '&e%arrow% &7Chat reloaded!'

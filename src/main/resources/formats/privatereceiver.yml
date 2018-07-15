@@ -1,15 +1,17 @@
-# privatereceiver.yml
-# For how this file is written, please see 'formats/chat.yml'
-# In this file, %player% represents the sender, and %other% represents the receiver (!!)
-# All PlaceholderAPI placeholders used are targeted to %player%
-
 parts:
   1:
     text: '&8['
-
   2:
-    text: '&b%player-nick%'
-    hover: '&bReal name: &b7%player%'
-
+    text: '%vault_prefix%%player-nick% '
+    hover: '&7&lInformation:\n   &7Username&8: &e%player%\n   &7Current world&8: &e%player_world%&7.\n   &7Message send: &e%server_time_H:mm, z%\n\n&6%arrow%%arrow% Click to teleport to them'
+    click:
+      type: 'RUN_COMMAND'
+      text: '/tp %player%'
   3:
-    text: ' &8-> &bYou&8]: &f%message%'
+    text: ' &8-> &eYou&8]: '
+  4:
+    text: '&f%message%'
+    hover: '&6%arrow%%arrow% Click to reply to them'
+    click:
+      type: 'SUGGEST_COMMAND'
+      text: '/msg %player% '
