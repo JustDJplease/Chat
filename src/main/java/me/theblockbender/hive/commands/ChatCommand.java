@@ -5,10 +5,7 @@
 package me.theblockbender.hive.commands;
 
 import me.theblockbender.hive.Chat;
-import me.theblockbender.hive.commands.sub.ChatHelpCommand;
-import me.theblockbender.hive.commands.sub.ChatReloadCommand;
-import me.theblockbender.hive.commands.sub.ChatVersionCommand;
-import me.theblockbender.hive.commands.sub.SubCommand;
+import me.theblockbender.hive.commands.sub.*;
 import me.theblockbender.hive.util.Lang;
 import me.theblockbender.hive.util.Permissions;
 import org.bukkit.command.Command;
@@ -28,6 +25,7 @@ public class ChatCommand implements CommandExecutor {
         subCommands.add(new ChatHelpCommand(chat, this));
         subCommands.add(new ChatVersionCommand(chat));
         subCommands.add(new ChatReloadCommand(chat));
+        subCommands.add(new ChatTimeCommand(chat));
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
