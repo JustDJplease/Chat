@@ -19,6 +19,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.util.*;
 
+//copyright
+
 public class Chat extends JavaPlugin {
     public Map<String, ChatFormat> chatFormats;
     public FileConfiguration config;
