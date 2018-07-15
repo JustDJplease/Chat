@@ -5,12 +5,14 @@ error:
   # Variables: %permission%
   nopermission: '&cYou do not have permission.'
 
+  # Message that appears when you don't have permission to do something.
+  # Variables: %permission%
+  noplayer: '&cThis command can only be executed by the console.'
+
   # Message that appears when you type a sub-command with /chat that doesn't exist
   # Variables: %subcommand%, %label%
   invalidsubcommand: '&e%arrow%&7The sub-command &e/%label% %subcommand% &7does not exist!'
 
-  # Message that appears when you try to chat while the chat is muted
-  chatmuted: '&e%arrow%&7 You can''t chat while the chat is muted!'
 
   # Message that appears when you miss some arguments with /msg
   # Variables: %label%
@@ -54,7 +56,14 @@ version: |
   &7  Version &e%version%
   &e&l*&7&m------------------------------&e&l*
 
- # Messages for /chat reload
+# Message for /chat version
+# Variables: %version%
+time: |
+  &e&l*&7&m------------&e&l Chat &7&m------------&e&l*
+  &7  Server time is currently: &e%server_time_H:mm, z%
+  &e&l*&7&m------------------------------&e&l*
+
+# Messages for /chat reload
 reload:
   # Message that appears before reload
   before: '&e%arrow% &7Reloading Chat...'

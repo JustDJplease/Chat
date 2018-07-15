@@ -24,6 +24,7 @@ permissions:
       chat.admin.version: true
       chat.admin.help: true
       chat.admin.reload: true
+      chat.admin.time: true
       chat.color: true
   chat.admin.version:
     description: Allows the user to view the version of chat.
@@ -33,6 +34,9 @@ permissions:
     default: op
   chat.admin.reload:
     description: Allows the user to reload the plugin
+    default: op
+  chat.admin.time:
+    description: Allows the user to view the current server time
     default: op
   chat.color:
     description: Allows the user to chat with color codes
