@@ -18,7 +18,7 @@ public class ChatTimeCommand extends SubCommand {
     public ChatTimeCommand(Chat chat) {
         super(chat, "time", "t", "servertime");
         this.setPermission("chat.admin.time");
-        this.setDescription("command-descriptions.version");
+        this.setDescription("command-descriptions.time");
     }
 
     public void execute(CommandSender sender, String mainCommandLabel, String subCommandLabel, String[] args) {
